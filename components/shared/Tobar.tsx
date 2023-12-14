@@ -9,6 +9,12 @@ import {
   Menu,
 } from "react-feather";
 
+const iconProps = {
+  width: 20,
+  strokeWidth: 1,
+  className: "cursor-pointer",
+};
+
 const TopBar = () => {
   return (
     <nav className="fixed top-0 z-30 flex w-full items-center justify-between max-w-screen-2xl shadow-sm">
@@ -36,14 +42,14 @@ const TopBar = () => {
           </Link>
 
           <div className="flex space-x-6">
-            <Search width={16} className="cursor-pointer" />
+            <Search {...iconProps} />
             <div className="relative">
-              <Heart width={16} className="cursor-pointer z-20" />
+              <Heart {...iconProps} />
               <div className="absolute top-[-2px] right-[-10px] w-4 h-4 bg-[#229099] rounded-full p-1 z-10 flex items-center justify-center">
                 <span className="text-xs text-white">3</span>
               </div>
             </div>
-            <ShoppingBag width={16} className="cursor-pointer" />
+            <ShoppingBag {...iconProps} />
           </div>
 
           <div className="border-l-2 border-l-slate-200 h-6 rounded-full"></div>
@@ -56,7 +62,7 @@ const TopBar = () => {
         </div>
 
         <div className="flex: md:hidden  ">
-          <Search width={16} className="cursor-pointer" />
+          <Search {...iconProps} />
         </div>
       </div>
     </nav>
