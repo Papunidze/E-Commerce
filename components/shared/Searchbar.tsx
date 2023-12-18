@@ -8,8 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const iconProps = {
   width: 20,
   strokeWidth: 1,
-  className:
-    "cursor-pointer absolute transition-transform duration-300 transform hover:scale-110",
+  className: "cursor-pointer absolute  hover:scale-110",
 };
 
 const people = [
@@ -61,21 +60,23 @@ const Searchbar = () => {
 
   return (
     <div className="flex items-center relative w-full cursor-default rounded-lg py-2 bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-      {!isInputVisible ? (
-        <Search
-          width={width}
-          strokeWidth={strokeWidth}
-          className={`${className} -right-2`}
-          onClick={toggleInputVisibility}
-        />
-      ) : (
-        <X
-          width={width}
-          strokeWidth={strokeWidth}
-          className={`${className} right-3`}
-          onClick={toggleInputVisibility}
-        />
-      )}
+      <div className="flex items-center absolute w-full right-3">
+        {!isInputVisible ? (
+          <Search
+            width={width}
+            strokeWidth={strokeWidth}
+            className={`${className}  `}
+            onClick={toggleInputVisibility}
+          />
+        ) : (
+          <X
+            width={width}
+            strokeWidth={strokeWidth}
+            className={`${className} -right-1`}
+            onClick={toggleInputVisibility}
+          />
+        )}
+      </div>
 
       <AnimatePresence>
         {isInputVisible && (
@@ -97,17 +98,19 @@ const Searchbar = () => {
               {query.length > 1 && (
                 <Combobox.Options className="absolute md:mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm top-9 rounded-md mt-2">
                   {filteredPeople.length === 0 && (
-                    <span className="block truncate font-normal p-2 text-xs-regular text-light-4">
-                      Not Found
-                    </span>
+                    <div className="cursor-pointer relative select-none py-2 pl-2 pr-4 text-black bg-white transition-colors hover:bg-gray-100">
+                      <span className="block truncate font-normal text-sm">
+                        Not Found
+                      </span>
+                    </div>
                   )}
                   {filteredPeople.map((person) => (
                     <Combobox.Option
                       key={person}
                       value={person}
-                      className="cursor-pointer relative select-none py-2 pl-10 pr-4 text-black bg-white transition-colors hover:bg-gray-100"
+                      className="cursor-pointer relative select-none py-2 pl-2 pr-4 text-black bg-white transition-colors hover:bg-gray-100"
                     >
-                      <span className="block truncate font-normal text-base">
+                      <span className="block truncate font-normal text-sm">
                         {person.toLowerCase().includes(query.toLowerCase()) ? (
                           <>
                             {person.substring(

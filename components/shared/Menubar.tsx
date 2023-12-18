@@ -58,7 +58,7 @@ const Menubar = () => {
       </div>
       <motion.nav
         animate={isOpen ? "open" : "closed"}
-        className="w-full fixed  top-0 left-0 bg-slate-200 h-full z-40 block md:hidden"
+        className="w-full fixed  top-0 left-0 bg-slate-100 h-full z-40 block md:hidden"
         variants={{
           open: { opacity: 1, y: 0 },
           closed: { opacity: 0, y: "100%" },

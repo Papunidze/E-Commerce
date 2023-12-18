@@ -50,11 +50,11 @@ const TopBar = () => {
             </PopoverContent>
           </div>
 
-          <div className="border-l-2 border-l-slate-200 h-6 rounded-full"></div>
+          <div className="border-l-2 border-l-slate-100 h-6 rounded-full"></div>
 
           <div className="relative group">
             <Link href={"?flow=auth"}>
-              <div className="bg-slate-200 flex p-2 items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer">
+              <div className="bg-slate-100 flex p-2 items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer">
                 <User width={16} />
               </div>
             </Link>
