@@ -18,15 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} max-w-screen-2xl m-auto`}>
+      <body
+        className={`${inter.className} max-w-screen-2xl h-screen max-h-[-webkit-fill-available] overflow-auto m-auto`}
+      >
         <TopBar />
-
-        <main className="flex flex-row">
-          <section className="apply flex min-h-screen flex-1 flex-col items-center bg-dark-1 px-6 pb-10 pt-28 max-md:pb-32 sm:px-10">
-            <div className="w-full ">{children}</div>
+        <main className="h-[-webkit-fill-available] w-ful bg-white">
+          <section className="apply flex  flex-1 flex-col items-center bg-dark-1 px-6 pb-10 pt-28 max-md:pb-32 sm:px-10">
+            <div className="w-full overflow-auto ">{children}</div>
           </section>
         </main>
-
         <BottomBar />
       </body>
     </html>

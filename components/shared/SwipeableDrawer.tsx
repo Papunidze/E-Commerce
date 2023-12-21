@@ -18,8 +18,8 @@ const SwipeableDrawer = ({
   };
 
   const drawerVariants = {
-    hidden: { y: "100%" },
-    visible: { y: 0 },
+    hidden: { y: "100%", width: "0px" },
+    visible: { y: 0, width: "100%" },
   };
 
   const [initialTouchY, setInitialTouchY] = useState(0);
@@ -40,14 +40,14 @@ const SwipeableDrawer = ({
       </AnimatePresence>
 
       <motion.div
-        className="bg-slate-100 w-full max-h-[calc(80%-theme(space.16))] absolute left-0 bottom-0 rounded-tl-2xl rounded-tr-2xl overflow-y-auto overflow-x-hidden h-full block md:hidden border-2 border-slate-200 border-l-8 border-r-8"
+        className={`bg-white shadow-sm w-full max-h-[calc(80%-theme(space.16))] absolute left-0 bottom-0 rounded-tl-2xl rounded-tr-2xl overflow-y-auto overflow-x-hidden h-full block md:hidden `}
         variants={drawerVariants}
         initial="hidden"
         animate={isOpen ? "visible" : "hidden"}
         exit="hidden"
       >
         <div
-          className="flex w-full items-center justify-center border-slate-300 border-2 border-t-0 p-2 border-l-0 border-r-0"
+          className="flex w-full items-center justify-center border-slate-100 border-2 border-t-0 p-2 border-l-0 border-r-0"
           onTouchStart={(e) => setInitialTouchY(e.touches[0].clientY)}
           onTouchMove={(e) => {
             const currentTouchY = e.touches[0].clientY;

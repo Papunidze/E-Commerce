@@ -1,15 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Combobox } from "@headlessui/react";
-import { Search, X } from "react-feather";
-import { motion, AnimatePresence } from "framer-motion";
-
-const iconProps = {
-  width: 20,
-  strokeWidth: 1,
-  className: "cursor-pointer absolute  hover:scale-110",
-};
+import { Search } from "react-feather";
 
 const people = [
   "Durward Reynolds",
@@ -17,127 +10,58 @@ const people = [
   "Therese Wunsch",
   "Benedict Kessler",
   "Katelyn Rohan",
-  "Benedict Kessler",
 ];
 
-const Searchbar = () => {
-  const [selectedPerson, setSelectedPerson] = useState(null);
+const iconProps = {
+  width: 20,
+  strokeWidth: 2,
+  className: "cursor-pointer absolute left-2 text-gray-500",
+};
+
+const SearchBar = () => {
+  const [selectedPerson, setSelectedPerson] = useState([]);
   const [query, setQuery] = useState("");
-  const [isInputVisible, setIsInputVisible] = useState(false);
 
-  const { width, strokeWidth, className } = iconProps;
-
-  const toggleInputVisibility = () => {
-    if (window.innerWidth < 768) {
-      setIsInputVisible(true);
-    } else {
-      setIsInputVisible(!isInputVisible);
-    }
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsInputVisible(true);
-      }
-    };
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const filteredPeople =
-    query === ""
-      ? people
-      : people.filter((person) =>
-          person.toLowerCase().includes(query.toLowerCase())
-        );
+  const filteredPeople = people.filter((person) =>
+    person.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
-    <div className="flex items-center relative w-full cursor-default rounded-lg py-2 bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-      <div className="flex items-center absolute w-full right-3">
-        {!isInputVisible ? (
-          <Search
-            width={width}
-            strokeWidth={strokeWidth}
-            className={`${className}  `}
-            onClick={toggleInputVisibility}
+    <div className="relative w-full">
+      <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+        <div className="relative flex items-center justify-center w-full">
+          <Combobox.Input
+            onChange={(event) => setQuery(event.target.value)}
+            className={
+              " w-full bg-white p-2 ps-10 rounded-tr-md rounded-tl-md shadow-md px-5 focus:outline-none "
+            }
+            placeholder="Search..."
           />
-        ) : (
-          <X
-            width={width}
-            strokeWidth={strokeWidth}
-            className={`${className} -right-1`}
-            onClick={toggleInputVisibility}
-          />
-        )}
-      </div>
+          <Search {...iconProps} />
+        </div>
 
-      <AnimatePresence>
-        {isInputVisible && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Combobox value={selectedPerson} onChange={setSelectedPerson}>
-              <Combobox.Input
-                onChange={(event) => setQuery(event.target.value)}
-                className="w-full border-none pl-3 pr-10 text-base-regular text-light-4  leading-5 text-gray-900 focus:ring-0 focus:outline-none"
-                id="search-input"
-                placeholder="Search..."
-                aria-labelledby="search-input-label"
-              />
-
-              {query.length > 1 && (
-                <Combobox.Options className="absolute md:mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm top-9 rounded-md mt-2">
-                  {filteredPeople.length === 0 && (
-                    <div className="cursor-pointer relative select-none py-2 pl-2 pr-4 text-black bg-white transition-colors hover:bg-gray-100">
-                      <span className="block truncate font-normal text-sm">
-                        Not Found
-                      </span>
-                    </div>
-                  )}
-                  {filteredPeople.map((person) => (
-                    <Combobox.Option
-                      key={person}
-                      value={person}
-                      className="cursor-pointer relative select-none py-2 pl-2 pr-4 text-black bg-white transition-colors hover:bg-gray-100"
-                    >
-                      <span className="block truncate font-normal text-sm">
-                        {person.toLowerCase().includes(query.toLowerCase()) ? (
-                          <>
-                            {person.substring(
-                              0,
-                              person.toLowerCase().indexOf(query.toLowerCase())
-                            )}
-                            <span className="font-semibold">{query}</span>
-                            {person.substring(
-                              person
-                                .toLowerCase()
-                                .indexOf(query.toLowerCase()) + query.length
-                            )}
-                          </>
-                        ) : (
-                          person
-                        )}
-                      </span>
-                    </Combobox.Option>
-                  ))}
-                </Combobox.Options>
-              )}
-            </Combobox>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <Combobox.Options
+          className={
+            "max-h-60 overflow-auto sm:text-sm absolute top-10 left-0 bg-white w-full rounded-br-md rounded-bl-md shadow-md  border-2 border-slate-100 flex items-start gap-4 flex-col p-2"
+          }
+        >
+          {filteredPeople.map((person) => (
+            <Combobox.Option
+              key={person}
+              value={person}
+              className={
+                "relative cursor-default w-full select-none py-2 pl-10 pr-4 text-gray-900 hover:bg-slate-100 rounded-md"
+              }
+            >
+              <span className="block truncate font-normal cursor-pointer ">
+                {person}
+              </span>
+            </Combobox.Option>
+          ))}
+        </Combobox.Options>
+      </Combobox>
     </div>
   );
 };
 
-export default Searchbar;
+export default SearchBar;

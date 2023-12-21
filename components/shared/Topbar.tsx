@@ -8,22 +8,27 @@ import Authorization from "@/app/(root)/(auth)";
 
 const TopBar = () => {
   return (
-    <nav className="fixed top-2 z-30 flex w-full items-center justify-between max-w-screen-2xl shadow-sm">
-      <div className="flex items-center  w-full px-8 justify-between">
-        <Menubar />
-        <div className="flex items-center justify-center md:justify-start w-full md:w-auto">
-          <Link href={"/"} className=" z-50">
+    <nav className="fixed z-30 flex w-full items-center justify-between max-w-screen-2xl shadow-sm bg-white">
+      <div className="flex items-center w-full px-8 justify-between md:justify-start">
+        <div className="absolute p-4 left-2 top-0 z-50">
+          <Menubar />
+        </div>
+
+        <div className="flex items-center justify-center md:justify-start m-auto">
+          <Link href={"/"} className="z-50 ">
             <Image
-              src={"/assets/logo.png"}
+              src="/assets/logo.png"
               alt="Logo"
-              width={55}
-              height={10}
-              layout="fixed"
+              width={74}
+              height={74}
+              loading="eager"
+              priority
+              className="rounded-full bg-transparent"
             />
           </Link>
         </div>
 
-        <div className=" hidden  md:flex items-center space-x-4 gap-6">
+        <div className="hidden  md:flex items-center justify-end w-full gap-4">
           <div className="relative group cursor-pointer">
             <div className="flex items-center gap-1">
               <span>PRODUCTS</span>
@@ -35,7 +40,7 @@ const TopBar = () => {
             <p className="text-light-1">TRACK YOUR ORDER</p>
           </Link>
 
-          <div className="flex space-x-6 items-center">
+          <div className="flex items-center gap-4">
             <Searchbar />
             <div className="relative">
               <PopoverContent icon={<Heart />} title="Favorites">
@@ -50,11 +55,11 @@ const TopBar = () => {
             </PopoverContent>
           </div>
 
-          <div className="border-l-2 border-l-slate-100 h-6 rounded-full"></div>
+          <div className="border-l-2 border-l-slate-200 h-6 rounded-full"></div>
 
           <div className="relative group">
             <Link href={"?flow=auth"}>
-              <div className="bg-slate-100 flex p-2 items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer">
+              <div className="bg-slate-200 p-2 flex  items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer">
                 <User width={16} />
               </div>
             </Link>

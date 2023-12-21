@@ -2,6 +2,7 @@
 
 import { Variants, motion, useCycle } from "framer-motion";
 import Searchbar from "./Searchbar";
+import { useEffect } from "react";
 
 interface PathProps {
   variants: Variants;
@@ -22,9 +23,21 @@ const Path = (props: PathProps) => (
 const Menubar = () => {
   const [isOpen, toggleOpen] = useCycle(false, true);
 
+  useEffect(() => {
+    const handleBodyOverflow = () => {
+      document.body.style.overflow = isOpen ? "hidden" : "auto";
+    };
+
+    handleBodyOverflow();
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   return (
-    <>
-      <div className="z-50 flex md:hidden items-center">
+    <div className="relative">
+      <div className="z-50 flex md:hidden items-center fixed">
         <motion.button
           onClick={() => toggleOpen()}
           animate={isOpen ? "open" : "closed"}
@@ -56,9 +69,9 @@ const Menubar = () => {
           </svg>
         </motion.button>
       </div>
-      <motion.nav
+      <motion.section
         animate={isOpen ? "open" : "closed"}
-        className="w-full fixed  top-0 left-0 bg-slate-100 h-full z-40 block md:hidden"
+        className="w-full fixed top-0 left-0 bg-slate-100 h-screen z-40 block md:hidden"
         variants={{
           open: { opacity: 1, y: 0 },
           closed: { opacity: 0, y: "100%" },
@@ -66,11 +79,11 @@ const Menubar = () => {
         initial="closed"
         transition={{ duration: 0.3 }}
       >
-        <div className="flex items-center mt-16 p-4  ">
+        <div className="flex items-center mt-16 p-4 w-full  ">
           <Searchbar />
         </div>
-      </motion.nav>
-    </>
+      </motion.section>
+    </div>
   );
 };
 

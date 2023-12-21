@@ -1,20 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { Home, Heart, ShoppingBag, User } from "react-feather";
+import { Home, Heart, ShoppingBag, Search } from "react-feather";
 import SwipeableDrawer from "./SwipeableDrawer";
 
 const iconProps = {
-  width: 20,
+  size: 18,
   strokeWidth: 1,
   className: "cursor-pointer",
 };
 
 const BottomBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
-      <div className="fixed bottom-0 z-10 w-full rounded-t-3xl bg-glassmorphism backdrop-blur-lg md:hidden bg-slate-100">
+      <div className="fixed bottom-0 z-10 w-full rounded-t-3xl  md:hidden bg-white border-2 border-slate-100 shadow-sm">
         <div className="bg-transparent bg-opacity-30 shadow-lg backdrop-blur-2.5 backdrop-filter border-1 border-solid border-opacity-18 rounded-10 p-4">
           <div className="flex items-center justify-around gap-6  w-full ">
             <Home {...iconProps} onClick={() => setIsOpen(true)} />
@@ -25,7 +26,7 @@ const BottomBar = () => {
               </div>
             </div>
             <ShoppingBag {...iconProps} />
-            <User {...iconProps} />
+            <Search {...iconProps} />
           </div>
         </div>
       </div>
