@@ -8,7 +8,7 @@ import Authorization from "@/app/(root)/(auth)";
 
 const TopBar = () => {
   return (
-    <nav className="fixed z-30 flex w-full items-center justify-between max-w-screen-2xl shadow-sm bg-white">
+    <nav className="fixed z-30 flex w-full items-center justify-between max-w-screen-2xl shadow-sm bg-ghost-10">
       <div className="flex items-center w-full px-8 justify-between md:justify-start">
         <div className="absolute p-4 left-2 top-0 z-50">
           <Menubar />
@@ -47,7 +47,7 @@ const TopBar = () => {
                 <p>Your favorite items go here.</p>
               </PopoverContent>
               <div className="absolute top-1 -right-2 w-4 h-4 bg-[#229099] rounded-full p-1 z-10 flex items-center justify-center ">
-                <span className="text-xs text-white">3</span>
+                <span className="text-xs text-ghost-10">3</span>
               </div>
             </div>
             <PopoverContent icon={<ShoppingBag />} title="Favorites">

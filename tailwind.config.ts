@@ -8,48 +8,37 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        green: {
-          50: "#30AF5B",
-          90: "#292C27",
-        },
         gray: {
-          10: "#EEEEEE",
-          20: "#A2A2A2",
-          30: "#7B7B7B",
-          50: "#585858",
-          90: "#141414",
-        },
-        orange: {
-          50: "#FF814C",
+          10: "#d3d3d3",
         },
         blue: {
-          70: "#021639",
+          10: "#ecf0f1",
+          20: "#d6eaf8",
         },
-        yellow: {
-          50: "#FEC601",
+        beige: {
+          50: "#f5f5dc",
         },
-      },
-      backgroundImage: {
-        "bg-img-1": "url('/img-1.png')",
-        "bg-img-2": "url('/img-2.png')",
-        "feature-bg": "url('/feature-bg.png')",
-        pattern: "url('/pattern.png')",
-        "pattern-2": "url('/pattern-bg.png')",
+        green: {
+          70: "#eaf2e3",
+        },
+        lavender: {
+          50: "#f5f0ff",
+        },
+        ghost: {
+          10: "#f8f8ff",
+        },
+        antique: {
+          10: "#faebd7",
+        },
       },
       screens: {
         xs: "400px",
+        md: "865px",
         "2xl": "1680px",
         "4xl": "2200px",
-        md: "865px",
       },
       shadow: {
-        xs: "box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;",
-      },
-      maxWidth: {
-        "10xl": "1512px",
-      },
-      borderRadius: {
-        "5xl": "40px",
+        xs: "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;",
       },
     },
   },

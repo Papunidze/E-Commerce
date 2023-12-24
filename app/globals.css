@@ -14,17 +14,41 @@
 
 body {
   font-family: Inter;
+  background: #f8f8ff;
 }
 
 @layer utilities {
+  .input {
+    @apply block font-normal bg-transparent w-full rounded-lg text-base py-1.5 ps-2 border outline-none shadow-sm focus:ring-2 focus:ring-blue-20 hover:ring-1;
+  }
+  .label {
+    @apply block text-sm font-medium leading-6 text-gray-900;
+  }
+  .button {
+    @apply flex w-full   justify-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+  .primary {
+    @apply bg-blue-20 focus-visible:outline-blue-200;
+  }
+  .secondary {
+    @apply bg-gray-10 focus-visible:outline-gray-50;
+  }
+  .link {
+    @apply underline text-xs cursor-pointer float-right font-semibold;
+  }
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 20px;
 }
