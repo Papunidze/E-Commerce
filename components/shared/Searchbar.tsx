@@ -33,7 +33,7 @@ const SearchBar = () => {
           <Combobox.Input
             onChange={(event) => setQuery(event.target.value)}
             className={
-              " w-full bg-white p-2 ps-10 rounded-tr-md rounded-tl-md shadow-md px-5 focus:outline-none "
+              " w-full bg-ghost-10 p-2 ps-10 rounded-tr-md rounded-tl-md shadow-md px-5 focus:outline-none "
             }
             placeholder="Search..."
           />
@@ -42,7 +42,7 @@ const SearchBar = () => {
 
         <Combobox.Options
           className={
-            "max-h-60 overflow-auto sm:text-sm absolute top-10 left-0 bg-white w-full rounded-br-md rounded-bl-md shadow-md  border-2 border-slate-100 flex items-start gap-4 flex-col p-2"
+            "max-h-60 overflow-auto sm:text-sm absolute top-10 left-0 bg-ghost-10 w-full rounded-br-md rounded-bl-md shadow-md  border-2 border-slate-100 flex items-start gap-4 flex-col p-2"
           }
         >
           {filteredPeople.map((person) => (

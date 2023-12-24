@@ -39,7 +39,7 @@ const PopoverContent = ({ icon, title, children }: PopoverContentProps) => {
           >
             <Popover.Panel
               static
-              className="absolute z-10 w-64 bg-white rounded-lg shadow-md top-10"
+              className="absolute z-10 w-64 bg-ghost-10 rounded-lg shadow-md top-10"
             >
               <div className="p-4">{children}</div>
             </Popover.Panel>

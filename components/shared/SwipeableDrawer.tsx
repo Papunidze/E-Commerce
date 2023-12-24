@@ -40,7 +40,7 @@ const SwipeableDrawer = ({
       </AnimatePresence>
 
       <motion.div
-        className={`bg-white shadow-sm w-full max-h-[calc(80%-theme(space.16))] absolute left-0 bottom-0 rounded-tl-2xl rounded-tr-2xl overflow-y-auto overflow-x-hidden h-full block md:hidden `}
+        className={`bg-ghost-10 shadow-sm w-full max-h-[calc(80%-theme(space.16))] absolute left-0 bottom-0 rounded-tl-2xl rounded-tr-2xl overflow-y-auto overflow-x-hidden h-full block md:hidden `}
         variants={drawerVariants}
         initial="hidden"
         animate={isOpen ? "visible" : "hidden"}
