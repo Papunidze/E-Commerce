@@ -1,19 +1,30 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import CustomButton from "@/components/shared/customButton";
 import { Form } from "@/components/shared/form";
 import { ControlledInput } from "@/components/shared/controlled-input";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import google from "@/public/assets/google.png";
+import { signInSchema } from "@/constant/authorization.models";
 
 const SignIn = () => {
   const {
     control,
     formState: { errors },
-  } = useForm();
+    handleSubmit,
+  } = useForm({
+    defaultValues: { email: "", password: "" },
+    resolver: yupResolver(signInSchema),
+  });
 
   return (
     <div className="text-2xl leading-7 font-bold mb-2 flex flex-col gap-4 mt-4">
-      <CustomButton title={`Sign in with Google`} containerStyles="primary" />
+      <CustomButton
+        title={`Sign in with Google`}
+        containerStyles="secondary"
+        Icon={google}
+      />
       <div className="flex items-center w-full">
         <div className=" flex-grow bg-gray-400 h-px"></div>
         <p className="mx-4 text-gray-500 text-sm lowercase">
@@ -23,13 +34,14 @@ const SignIn = () => {
       </div>
 
       <Form
-        onSubmit={() => console.log("work")}
+        onSubmit={handleSubmit((form) => console.log(form))}
         isLoading={false}
         submitButtonLabel="Sign In"
         form={
           <div className="relative flex flex-col gap-4">
             <ControlledInput
               control={control}
+              errors={errors.email}
               name="email"
               inputProps={{ type: "text" }}
               label="Email"
@@ -43,6 +55,7 @@ const SignIn = () => {
               </Link>
               <ControlledInput
                 control={control}
+                errors={errors.password}
                 name="password"
                 label="Password"
                 inputProps={{ type: "password" }}

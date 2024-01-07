@@ -10,6 +10,7 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   -webkit-appearance: none;
+  color: #001122;
 }
 
 body {
@@ -19,19 +20,25 @@ body {
 
 @layer utilities {
   .input {
-    @apply block font-normal bg-transparent w-full rounded-lg text-base py-1.5 ps-2 border outline-none shadow-sm focus:ring-2 focus:ring-blue-20 hover:ring-1;
+    @apply block font-normal  w-full rounded-lg text-base py-1.5 ps-2 border outline-none shadow-sm focus:ring-2 focus:ring-blue-20 hover:ring-1 bg-gray-200;
   }
   .label {
-    @apply block text-sm font-medium leading-6 text-gray-900;
+    @apply block text-sm font-medium leading-6;
   }
   .button {
-    @apply flex w-full   justify-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    @apply flex w-full   justify-center gap-2 rounded-md px-3 py-1.5 text-sm font-semibold leading-6 shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all;
   }
   .primary {
-    @apply bg-blue-20 focus-visible:outline-blue-200;
+    @apply bg-black-10 text-white focus-visible:outline-black-30;
   }
   .secondary {
-    @apply bg-gray-10 focus-visible:outline-gray-50;
+    @apply bg-black-50 focus-visible:outline-black-30 text-white;
+  }
+  .secondary:hover {
+    @apply bg-black-30;
+  }
+  .primary:hover {
+    @apply bg-black-40;
   }
   .link {
     @apply underline text-xs cursor-pointer float-right font-semibold;

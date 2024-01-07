@@ -4,12 +4,20 @@ import { ControlledInput } from "@/components/shared/controlled-input";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { recoveryScheme } from "@/constant/authorization.models";
 
 const ForgotPassword = () => {
   const {
     control,
     formState: { errors },
-  } = useForm();
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      email: "",
+    },
+    resolver: yupResolver(recoveryScheme),
+  });
 
   return (
     <div className="text-2xl leading-7 font-bold mb-2 flex flex-col gap-4 mt-4">
@@ -23,9 +31,9 @@ const ForgotPassword = () => {
       </p>
 
       <Form
-        onSubmit={() => console.log("work")}
+        onSubmit={handleSubmit((form) => console.log(form))}
         isLoading={false}
-        submitButtonLabel="Sign In"
+        submitButtonLabel="Send Reset Instructions"
         form={
           <div className="relative flex flex-col gap-4">
             <ControlledInput
@@ -33,8 +41,9 @@ const ForgotPassword = () => {
               name="email"
               inputProps={{ type: "text" }}
               label="Email Address"
+              errors={errors.email}
             />
-            <Link className="link absolute right-2 top-1" href={"?flow=auth"}>
+            <Link className="link absolute right-2 top-1" href={"?flow=signup"}>
               Sign in
             </Link>
           </div>

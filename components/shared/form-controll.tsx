@@ -13,7 +13,7 @@ export const FormControl = (props: CustomFormControlProps) => {
 
       {props.children}
       {props.error && (
-        <label className="text-primary text-xs font-montserrat font-normal ml-1 mt-1">
+        <label className="text-primary text-xs font-montserrat font-normal ml-1 mt-1 text-red-400">
           {props.helperText}
         </label>
       )}

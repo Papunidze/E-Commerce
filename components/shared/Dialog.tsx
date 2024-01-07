@@ -14,7 +14,11 @@ const DialogForm = ({ children, isOpen, onClose, title }: DialogProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50 " onClose={onClose}>
+        <Dialog
+          as="div"
+          className="relative z-50 select-none"
+          onClose={onClose}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -41,7 +45,7 @@ const DialogForm = ({ children, isOpen, onClose, title }: DialogProps) => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-ghost-10 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900 flex w-full justify-between items-center"
+                    className="text-lg font-medium leading-6  flex w-full justify-between items-center"
                   >
                     {title}
                     <X

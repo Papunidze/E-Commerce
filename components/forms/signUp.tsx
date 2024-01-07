@@ -4,16 +4,33 @@ import { ControlledInput } from "@/components/shared/controlled-input";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signUpScheme } from "@/constant/authorization.models";
+import google from "@/public/assets/google.png";
 
 const SignUp = () => {
   const {
     control,
     formState: { errors },
-  } = useForm();
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+      name: "",
+      username: "",
+      passwordConfirm: "",
+    },
+    resolver: yupResolver(signUpScheme),
+  });
 
   return (
     <div className="text-2xl leading-7 font-bold mb-2 flex flex-col gap-4 mt-4">
-      <CustomButton title={`Sign in with Google`} containerStyles="primary" />
+      <CustomButton
+        title={`Sign in with Google`}
+        containerStyles="secondary"
+        Icon={google}
+      />
       <div className="flex items-center w-full">
         <div className=" flex-grow bg-gray-400 h-px"></div>
         <p className="mx-4 text-gray-500 text-sm lowercase">
@@ -23,9 +40,9 @@ const SignUp = () => {
       </div>
 
       <Form
-        onSubmit={() => console.log("work")}
+        onSubmit={handleSubmit((form) => console.log(form))}
         isLoading={false}
-        submitButtonLabel="Sign In"
+        submitButtonLabel="Sign Up"
         form={
           <div className="relative flex flex-col gap-2">
             <div className="row__input_contianer">
@@ -34,12 +51,14 @@ const SignUp = () => {
                 name="name"
                 inputProps={{ type: "text" }}
                 label="Name"
+                errors={errors.name}
               />
               <ControlledInput
                 control={control}
                 name="username"
                 inputProps={{ type: "text" }}
                 label="Username"
+                errors={errors.username}
               />
             </div>
             <ControlledInput
@@ -47,6 +66,7 @@ const SignUp = () => {
               name="email"
               inputProps={{ type: "text" }}
               label="Email"
+              errors={errors.email}
             />
             <div className="row__input_contianer">
               <ControlledInput
@@ -54,12 +74,14 @@ const SignUp = () => {
                 name="password"
                 label="Password"
                 inputProps={{ type: "password" }}
+                errors={errors.password}
               />
               <ControlledInput
                 control={control}
                 name="passwordConfirm"
                 label="Repeat Password"
                 inputProps={{ type: "password" }}
+                errors={errors.passwordConfirm}
               />
             </div>
           </div>

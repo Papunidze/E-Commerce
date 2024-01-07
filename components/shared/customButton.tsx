@@ -1,3 +1,4 @@
+import Image, { StaticImageData } from "next/image";
 import React, { MouseEventHandler } from "react";
 
 interface CustomButtonProps {
@@ -6,7 +7,7 @@ interface CustomButtonProps {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   btnType?: "button" | "submit";
 
-  Icon?: string;
+  Icon?: StaticImageData | string;
   isLoading?: boolean;
   submitButtonProps?: object;
 }
@@ -36,7 +37,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       ) : (
         Icon && (
           <div className="relative w-6 h-6">
-            <img src={Icon} alt="icon" className="icon" />
+            <Image src={Icon} alt="icon" className="icon" />
           </div>
         )
       )}
