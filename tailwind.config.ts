@@ -13,10 +13,12 @@ module.exports = {
         primary: {
           light: "#f9a8d4",
           DEFAULT: "#e35478",
+          dark: "#db4067",
         },
         secondary: {
           light: "#F5F5F5",
           DEFAULT: "#FAFAFA",
+          dark: "#ededed",
         },
         accent: {
           light: "#222222",
@@ -77,6 +79,7 @@ module.exports = {
       none: "none",
     },
   },
+
   variants: {
     extend: {},
   },
