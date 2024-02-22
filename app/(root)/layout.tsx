@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import TopBar from "@/components/shared/TopBar";
+import "../globals.css";
+import TopBar from "@/components/shared/appTopBar";
+import Authorization from "./(auth)";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} max-w-screen-2xl h-screen max-h-[-webkit-fill-available] overflow-auto m-auto`}
+        className={`${inter.className} max-w-screen-2xl h-screen max-h-[-webkit-fill-available] overflow-auto m-auto `}
       >
         <TopBar />
         <main className="w-full">
           <section className="apply flex  flex-1 flex-col items-center bg-dark-1 px-6 pb-8 pt-2 max-md:pb-32 sm:px-10">
             <div className="w-full overflow-auto ">{children}</div>
           </section>
+          <Authorization />
         </main>
       </body>
     </html>

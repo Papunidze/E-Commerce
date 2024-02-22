@@ -10,7 +10,42 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   color: #001122;
+}
+
+@layer utilities {
+  label,
+  span,
+  p,
+  a {
+    @apply font-sans font-semibold leading-3 tracking-wide;
+  }
+  .input {
+    @apply block font-normal w-full rounded-lg text-base py-1 px-2 border outline-none shadow-sm focus:ring-2 focus:ring-pink-300 hover:ring-1 hover:ring-pink-200 bg-secondary-dark font-sans;
+  }
+  .label {
+    @apply block text-base font-medium leading-3 px-1 py-2;
+  }
+  .button {
+    @apply flex w-full font-sans  tracking-wide text-base justify-center gap-2 rounded-md px-3 py-1.5 font-semibold leading-6 shadow-md  outline-none transition-all duration-500;
+  }
+  .primary {
+    @apply text-white bg-gradient-to-t  from-primary to-primary-light;
+  }
+  .secondary {
+    @apply bg-gradient-to-t from-secondary to-secondary-light text-accent shadow-inner border-2 border-slate-100;
+  }
+  .primary:hover {
+    @apply bg-gradient-to-t  from-primary-dark to-primary-light;
+  }
+  .secondary:hover {
+    @apply bg-gradient-to-t from-secondary-dark to-secondary-light;
+  }
+  .link {
+    @apply underline text-xs cursor-pointer float-right font-semibold;
+  }
 }
 
 @font-face {

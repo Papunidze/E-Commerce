@@ -25,7 +25,7 @@ const TopBar = () => {
           {navItems.map(({ href, label }) => (
             <Link href={href} key={href} className="relative inline-block">
               <span
-                className={`text-gray-700 font-bold hover:text-gray-700 ${
+                className={` font-semibold hover:text-gray-700 ${
                   isActive(href) &&
                   "bg-gradient-to-tl text-transparent from-primary to-primary-light bg-clip-text"
                 }`}
@@ -34,9 +34,9 @@ const TopBar = () => {
               >
                 {label}
                 <div
-                  className={`absolute w-8 h-2 rounded-lg bg-gradient-to-tl from-blue-400 to-blue-200 shadow-inner ${
-                    hoveredSpan === label ? "opacity-100" : "opacity-0"
-                  } animate-bounce`}
+                  className={`absolute max-w-8 h-2 rounded-lg bg-gradient-to-tl from-slate-400 to-blue-200 shadow-inner mt-2 ${
+                    hoveredSpan === label ? "w-full" : "w-0"
+                  } transition-all duration-300`}
                 ></div>
               </span>
             </Link>
@@ -66,7 +66,7 @@ const TopBar = () => {
               </div>
             </div>
             <span
-              className="absolute right-0 top-0 bg-gradient-to-tl from-blue-400 to-blue-200 w-5 h-5 rounded-md text-white font-semibold text-center flex items-center justify-center -translate-y-2 shadow-md"
+              className="absolute right-0 top-0 bg-gradient-to-tl from-slate-400 to-blue-200 w-5 h-5 rounded-md text-white font-semibold text-center flex items-center justify-center -translate-y-2 shadow-md"
               aria-hidden="true"
             >
               4
@@ -74,7 +74,7 @@ const TopBar = () => {
           </div>
           <div className="group">
             <Link
-              href="?flow=auth"
+              href="?flow=sign-in"
               className="bg-gray-200 p-2 flex items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer"
             >
               <User width={18} strokeWidth={2.5} />
