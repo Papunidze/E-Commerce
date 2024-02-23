@@ -1,6 +1,6 @@
 import { Form } from "@/components/shared/forms/form";
 import { ControlledInput } from "@/components/shared/inputs/controlled-input";
-import { recoveryScheme, signInSchema } from "@/constants/authorization.models";
+import { recoveryScheme, signInSchema } from "@/constants/authorization";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import React from "react";
