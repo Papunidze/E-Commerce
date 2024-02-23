@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, ShoppingBag, Search } from "react-feather";
+import { User, ShoppingBag, Search, Menu } from "react-feather";
 
 const TopBar = () => {
   const pathname = usePathname();
@@ -19,13 +19,14 @@ const TopBar = () => {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <header className="">
-      <nav className="container mx-auto flex items-center justify-between py-4 px-6  ">
-        <div className="flex items-center gap-4">
+    <header className="block relative overflow-hidden">
+      <nav className="container mx-auto flex items-center justify-between  py-4 px-2 lg:px-6  ">
+        <Menu className="md:hidden block" />
+        <div className="hidden items-center gap-4 md:flex ">
           {navItems.map(({ href, label }) => (
             <Link href={href} key={href} className="relative inline-block">
               <span
-                className={` font-semibold hover:text-gray-700 ${
+                className={`font-semibold hover:text-gray-700 ${
                   isActive(href) &&
                   "bg-gradient-to-tl text-transparent from-primary to-primary-light bg-clip-text"
                 }`}
@@ -42,7 +43,7 @@ const TopBar = () => {
             </Link>
           ))}
         </div>
-        <h1 className="text-3xl font-bold text-primary font-dancing relative px-4 cursor-pointer">
+        <h1 className="text-2xl lg:text-3xl font-bold text-primary font-dancing relative cursor-pointer flex items-center lg:px-4 px-2">
           Shopping
           <span
             className="absolute w-full left-0 h-full bg-transparent border-[1px] border-red-200 rounded-full rotate-[5deg]"
@@ -53,31 +54,37 @@ const TopBar = () => {
             aria-hidden="true"
           ></span>
         </h1>
-        <div className="ml-4 flex gap-2 items-center justify-center">
-          <div className="border-2 border-gray-200 flex rounded-full px-2 py-2 gap-2 items-center relative">
-            <Search strokeWidth={2.5} color="black" />
-            <div className="flex gap-2">
-              <input
-                placeholder="search"
-                className="outline-none font-sans font-semibold  "
+        <div className="ml-2 md:ml-4 flex items-center">
+          <div className="border border-gray-200 flex rounded-full px-1 py-1 lg:py-2 lg:px-2 gap-1 md:gap-2 items-center relative">
+            <Search
+              strokeWidth={2}
+              color="black"
+              className="w-5 h-5 lg:w-6 lg:h-6 ml-1"
+            />
+            <input
+              placeholder="Search"
+              className="outline-none font-sans font-semibold flex-grow ml-1 md:ml-2 text-sm md:text-base w-36 lg:w-full"
+            />
+            <div className="px-1 md:px-2 border-l border-gray-200 relative md:block hidden">
+              <ShoppingBag
+                fill="black"
+                color="white"
+                className="w-5 h-5 lg:w-6 lg:h-6"
               />
-              <div className="px-2 border-l-2 border-gray-200 relative">
-                <ShoppingBag fill="black" color="white" />
-              </div>
             </div>
             <span
-              className="absolute right-0 top-0 bg-gradient-to-tl from-slate-400 to-blue-200 w-5 h-5 rounded-md text-white font-semibold text-center flex items-center justify-center -translate-y-2 shadow-md"
+              className="md:flex hidden absolute right-0 top-0 bg-gradient-to-tl from-slate-400 to-blue-200 w-4 h-4 md:w-5 md:h-5 rounded-full text-xs md:text-sm text-white font-semibold  items-center justify-center -translate-y-1 shadow-md"
               aria-hidden="true"
             >
               4
             </span>
           </div>
-          <div className="group">
+          <div className="group md:block hidden ml-2 md:ml-4">
             <Link
               href="?flow=sign-in"
-              className="bg-gray-200 p-2 flex items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer"
+              className="bg-gray-200 p-1 lg:p-2 flex items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer"
             >
-              <User width={18} strokeWidth={2.5} />
+              <User strokeWidth={2} className="w-5 h-5 lg:w-6 lg:h-6" />
             </Link>
           </div>
         </div>

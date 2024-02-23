@@ -1,6 +1,6 @@
 import { Form } from "@/components/shared/forms/form";
 import { ControlledInput } from "@/components/shared/inputs/controlled-input";
-import { signUpScheme } from "@/constants/authorization.models";
+import { signUpScheme } from "@/constants/authorization";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import Link from "next/link";
