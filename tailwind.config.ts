@@ -78,6 +78,20 @@ module.exports = {
       outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
       none: "none",
     },
+    animation: {
+      fadeIn: "fadeIn 0.5s ease-in",
+      fadeout: "fadeout 0.5s ease-out",
+    },
+    keyframes: {
+      fadeIn: {
+        "0%": { opacity: "0" },
+        "100%": { opacity: "1" },
+      },
+      fadeout: {
+        "0%": { opacity: "1" },
+        "100%": { opacity: "0" },
+      },
+    },
   },
 
   variants: {
