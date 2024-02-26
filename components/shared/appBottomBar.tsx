@@ -3,9 +3,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { Home, ShoppingBag, User } from "react-feather";
+import Cart from "../forms/cart/cart";
 
 const iconProps = {
-  size: 18,
+  size: 20,
 };
 const BottomBar = () => {
   const pathname = usePathname();
@@ -27,7 +28,11 @@ const BottomBar = () => {
               ></div>
             )}
           </button>
-          <ShoppingBag {...iconProps} className="hover:text-primary-light" />
+          <Cart
+            customStyle={
+              "hover:text-primary-light  fill-transparent stroke-accent w-4 h-4"
+            }
+          />
           <Link href={"?flow=sign-in"}>
             <User {...iconProps} className="hover:text-primary-light" />
           </Link>
