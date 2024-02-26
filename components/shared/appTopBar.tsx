@@ -58,12 +58,12 @@ const TopBar = () => {
           </h1>
         </div>
 
-        <div className="ml-2 md:ml-4 flex items-center relative">
+        <div className="ml-2 md:ml-0 flex items-center relative">
           <div className="border border-gray-200 flex rounded-full px-1 py-1 lg:py-2 lg:px-2 gap-1 md:gap-2 items-center relative">
             <Search
               strokeWidth={2}
               color="black"
-              className="w-5 h-5 lg:w-6 lg:h-6 ml-1"
+              className="w-4 h-4 lg:w-6 lg:h-6 ml-1"
             />
             <input
               placeholder="Search"
@@ -79,12 +79,12 @@ const TopBar = () => {
               4
             </span>
           </div>
-          <div className="group md:block hidden ml-2 md:ml-4">
+          <div className="group md:block hidden ml-2 ">
             <Link
               href="?flow=sign-in"
               className="bg-gray-200 p-1 lg:p-2 flex items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer"
             >
-              <User strokeWidth={2} className="w-5 h-5 lg:w-6 lg:h-6" />
+              <User strokeWidth={2} className="w-4 lg:w-6 lg:h-6" />
             </Link>
           </div>
         </div>
