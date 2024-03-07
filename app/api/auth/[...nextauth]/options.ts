@@ -50,7 +50,6 @@ export const options: NextAuthOptions = {
           credentials!.password,
           user.password
         );
-
         if (!isValidPassword) {
           return null;
         }

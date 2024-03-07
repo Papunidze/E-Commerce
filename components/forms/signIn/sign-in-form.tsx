@@ -1,3 +1,4 @@
+"use client";
 import { Form } from "@/components/shared/forms/form";
 import { ControlledInput } from "@/components/shared/inputs/controlled-input";
 import { signInSchema } from "@/constants/authorization";
@@ -8,6 +9,8 @@ import GoogleImg from "@/public/assets/google.png";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { signIn, signOut } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const router = useRouter();
@@ -23,7 +26,10 @@ const SignIn = () => {
 
   return (
     <div className="text-2xl leading-7 font-bold mb-2 flex flex-col gap-4 mt-4">
-      <button className="button secondary flex items-center justify-center">
+      <button
+        className="button secondary flex items-center justify-center"
+        onClick={() => signIn("google", { callbackUrl: location.pathname })}
+      >
         <Image src={GoogleImg} alt="Google" className="w-6" />
         Sign in with Google
       </button>
@@ -36,7 +42,16 @@ const SignIn = () => {
       </div>
 
       <Form
-        onSubmit={handleSubmit((form) => console.log(form))}
+        onSubmit={handleSubmit(async (form) => {
+          const result = await signIn("credentials", {
+            ...form,
+            redirect: false,
+          });
+          if (result?.error) {
+            setValue("password", "");
+            toast.error("Incorrect username or password!");
+          } else router.push(location.pathname);
+        })}
         isLoading={false}
         submitButtonLabel="Sign In"
         form={

@@ -4,6 +4,8 @@ import "../globals.css";
 import TopBar from "@/components/shared/appTopBar";
 import Authorization from "./(auth)";
 import BottomBar from "@/components/shared/appBottomBar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +27,20 @@ export default function RootLayout({
         <main className="w-full">
           <TopBar />
           <section className="apply flex  flex-1 flex-col items-center bg-dark-1 px-6 pb-8 pt-2 max-md:pb-32 sm:px-10">
-            <div className="w-full overflow-auto ">{children}</div>
+            <div className="w-full overflow-auto ">
+              <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
+              {children}
+            </div>
           </section>
           <BottomBar />
         </main>
