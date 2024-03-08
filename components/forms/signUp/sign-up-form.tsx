@@ -8,6 +8,9 @@ import GoogleImg from "@/public/assets/google.png";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import { signUp } from "./sign-up.api";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const router = useRouter();
@@ -25,6 +28,8 @@ const SignUp = () => {
     resolver: yupResolver(signUpScheme),
   });
 
+  const $registration = useMutation(signUp);
+
   return (
     <div className="text-2xl leading-7 font-bold mb-2 flex flex-col gap-4 mt-4">
       <button className="button secondary flex items-center justify-center">
@@ -40,7 +45,23 @@ const SignUp = () => {
       </div>
 
       <Form
-        onSubmit={handleSubmit((form) => console.log(form))}
+        onSubmit={handleSubmit((form) =>
+          $registration.mutate(
+            { ...form },
+            {
+              onSuccess: () => {
+                toast.success("New user successfully created");
+                router.push("?flow=sign-in");
+              },
+              onError: (error) => {
+                const customError = error as {
+                  error: string;
+                };
+                toast.error(customError.error);
+              },
+            }
+          )
+        )}
         isLoading={false}
         submitButtonLabel="Sign Up"
         form={
