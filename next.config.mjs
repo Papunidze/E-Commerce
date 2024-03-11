@@ -8,6 +8,9 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  images: {
+    domains: ["lh3.googleusercontent.com"],
+  },
   env: {
     MONGODB_URL:
       "mongodb+srv://papunidze07:Zie3HNjSwDFtpwcP@ecomerce.vtueyf5.mongodb.net/?retryWrites=true&w=majority",

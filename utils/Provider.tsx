@@ -1,5 +1,7 @@
 "use client";
 
+import { SessionProvider, useSession } from "next-auth/react";
+import { Suspense } from "react";
 import { QueryClientProvider, QueryClient } from "react-query";
 
 export const queryClient = new QueryClient({
@@ -12,7 +14,11 @@ export const queryClient = new QueryClient({
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider>
+        <Suspense fallback={<p>Loading feed...</p>}>{children}</Suspense>
+      </SessionProvider>
+    </QueryClientProvider>
   );
 };
 

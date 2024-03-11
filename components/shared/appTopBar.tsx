@@ -5,11 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User, Search, Menu } from "react-feather";
 import Cart from "../forms/cart/cart";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Me from "../forms/me/me.form";
 
 const TopBar = () => {
+  const { data: session, status } = useSession();
   const pathname = usePathname();
   const [hoveredSpan, setHoveredSpan] = useState<String | null>(null);
-
   const navItems = [
     { href: "/", label: "Home" },
     { href: "/CreateUser", label: "Trendy" },
@@ -80,12 +83,16 @@ const TopBar = () => {
             </span>
           </div>
           <div className="group md:block hidden ml-2 ">
-            <Link
-              href="?flow=sign-in"
-              className="bg-gray-200 p-1 lg:p-2 flex items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer"
-            >
-              <User strokeWidth={2} className="w-4 lg:w-6 lg:h-6" />
-            </Link>
+            {status === "authenticated" ? (
+              <Me user={session.user} />
+            ) : (
+              <Link
+                href="?flow=sign-in"
+                className="bg-gray-200 p-1 lg:p-2 flex items-center justify-center rounded-tl-2xl rounded-tr-3xl rounded-bl-3xl rounded-br-xl cursor-pointer outline-none"
+              >
+                <User strokeWidth={2} className="w-4 lg:w-6 lg:h-6" />
+              </Link>
+            )}
           </div>
         </div>
       </nav>

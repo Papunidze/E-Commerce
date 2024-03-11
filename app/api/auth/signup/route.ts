@@ -39,7 +39,7 @@ export const POST = async (
     const newUser = new User({
       name: body.name,
       email: body.email.toLowerCase(),
-      avatar: `https://api.dicebear.com/5.x/initials/svg?seed=${initials}`,
+      image: `https://api.dicebear.com/5.x/initials/svg?seed=${initials}`,
       password: hashedPassword,
     });
 

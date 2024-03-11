@@ -14,7 +14,6 @@ export const options: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 
       async profile(profile) {
-        console.log("Profile Google: ", profile);
         let user = await User.findOne({
           email: profile?.email,
         });
@@ -22,7 +21,7 @@ export const options: NextAuthOptions = {
           user = await User.create({
             email: profile?.email,
             name: profile?.name,
-            avatar: profile?.picture,
+            image: profile?.picture,
           });
         }
         return user;
@@ -41,7 +40,6 @@ export const options: NextAuthOptions = {
         const user = await User.findOne({
           email: credentials!.email,
         });
-
         if (!user || !credentials!.password || !user.password) {
           return null;
         }
@@ -60,12 +58,13 @@ export const options: NextAuthOptions = {
   ],
 
   secret: process.env.NEXT_AUTH_SECRET,
+
+  session: {
+    maxAge: 24 * 60 * 60,
+  },
+
   callbacks: {
-    async jwt({ token, user }) {
-      const { role, ...tokenWithoutRole } = token;
-      return tokenWithoutRole;
-    },
-    async session({ session, token }) {
+    async session({ session, user }) {
       return session;
     },
   },

@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     minlength: 3,
     maxlength: 50,
   },
-  avatar: { type: String },
+  image: { type: String, require: true },
   email: {
     type: String,
     required: true,
