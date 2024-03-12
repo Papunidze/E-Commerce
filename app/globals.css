@@ -29,7 +29,7 @@ body {
     @apply block text-base font-medium leading-3 px-1 py-2;
   }
   .button {
-    @apply flex w-full font-sans  tracking-wide text-base justify-center gap-2 rounded-md px-3 py-1.5 font-semibold leading-6 shadow-md  outline-none transition-all duration-500;
+    @apply flex w-auto font-sans  tracking-wide text-base justify-center gap-2 rounded-md px-3 py-1.5 font-semibold leading-6 shadow-md  outline-none transition-all duration-500;
   }
   .primary {
     @apply text-white bg-gradient-to-t  from-primary to-primary-light;
