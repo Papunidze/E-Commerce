@@ -6,26 +6,21 @@ import { Tab } from "@headlessui/react";
 import MyDetails from "./my-detailts";
 import Password from "./Password";
 import Billing from "./Billing";
+import { Session } from "next-auth";
 
-export interface UserProps {
-  user:
-    | {
-        name?: string | null | undefined;
-        email?: string | null | undefined;
-        image?: string | null | undefined;
-      }
-    | undefined;
+export interface UserSession {
+  session: Session | null;
 }
 
-const Me = ({ user }: UserProps) => {
+const Me = ({ session }: UserSession) => {
   const page = [
     {
       title: "My Details",
-      components: <MyDetails user={user} />,
+      components: <MyDetails session={session} />,
     },
     {
       title: "Password",
-      components: <Password />,
+      components: <Password session={session} />,
     },
     {
       title: "Billing",
@@ -39,7 +34,7 @@ const Me = ({ user }: UserProps) => {
     <>
       <div className="relative inline-block">
         <Image
-          src={user?.image || ""}
+          src={session?.user?.image || ""}
           alt="Avatar"
           objectFit="cover"
           loading="lazy"

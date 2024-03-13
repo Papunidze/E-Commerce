@@ -7,10 +7,6 @@ export const MyDetailsScheme = yup.object().shape({
     .max(50, "Name cannot exceed 50 characters")
     .matches(/^[A-Za-z\s]+$/, "Name can only contain alphabets")
     .required("Name is required"),
-  email: yup
-    .string()
-    .email("Invalid email address")
-    .required("Email is required"),
 });
 
 export const PasswordScheme = yup.object().shape({

@@ -7,22 +7,27 @@ import { ControlledInput } from "@/components/shared/inputs/controlled-input";
 import { MyDetailsScheme } from "@/constants/settings";
 import { useState } from "react";
 import Image from "next/image";
-import { UserProps } from "./me.form";
+import { useMutation } from "react-query";
+import { updateUser } from "./me.api";
+import { toast } from "react-toastify";
+import { UserSession } from "./me.form";
+import { useSession } from "next-auth/react";
 
-const MyDetails = ({ user }: UserProps) => {
-  const [avatar, setAvatar] = useState(user?.image || "");
-
+const MyDetails = ({ session }: UserSession) => {
+  const { update } = useSession();
+  const [avatar, setAvatar] = useState(session?.user?.image || "");
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: user?.name || "",
-      email: user?.email || "",
+      name: session?.user?.name || "",
     },
     resolver: yupResolver(MyDetailsScheme),
   });
+  const $updateUser = useMutation(updateUser);
+
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -68,7 +73,21 @@ const MyDetails = ({ user }: UserProps) => {
         </div>
       </div>
       <Form
-        onSubmit={handleSubmit((form) => console.log(form))}
+        onSubmit={handleSubmit((form) =>
+          $updateUser.mutate(
+            { ...form, avatar, userId: session?.user?.id },
+            {
+              onSuccess: ({ ...args }) => {
+                toast.success(args.status);
+                update({ name: form.name });
+              },
+              onError: (error) => {
+                const customError = error as { error: string };
+                toast.error(customError.error);
+              },
+            }
+          )
+        )}
         submitButtonLabel="Save"
         btnStyle="w-fit  px-5"
         form={
@@ -79,13 +98,6 @@ const MyDetails = ({ user }: UserProps) => {
               inputProps={{ type: "text" }}
               label="Name"
               errors={errors.name}
-            />
-            <ControlledInput
-              control={control}
-              name="email"
-              label="Email"
-              inputProps={{ type: "text" }}
-              errors={errors.email}
             />
           </>
         }

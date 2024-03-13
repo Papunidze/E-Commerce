@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { User, Search, Menu } from "react-feather";
 import Cart from "../forms/cart/cart";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import Me from "../forms/me/me.form";
 
 const TopBar = () => {
@@ -84,7 +83,7 @@ const TopBar = () => {
           </div>
           <div className="group md:block hidden ml-2 ">
             {status === "authenticated" ? (
-              <Me user={session.user} />
+              <Me session={session} />
             ) : (
               <Link
                 href="?flow=sign-in"
