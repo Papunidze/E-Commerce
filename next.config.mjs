@@ -9,7 +9,11 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["lh3.googleusercontent.com", "api.dicebear.com"],
+    domains: [
+      "lh3.googleusercontent.com",
+      "api.dicebear.com",
+      "firebasestorage.googleapis.com",
+    ],
   },
   env: {
     MONGODB_URL:
@@ -19,7 +23,7 @@ const nextConfig = {
     JWT_SECRET: "pFKcyzD5MbXyOnv",
     JWT_ACCESS_EXPIRES_IN: "30s",
     NEXT_AUTH_SECRET: "codingwithabbas",
-
+    FIREBASE_BUCKET: "pchat-2442c.appspot.com",
     GOOGLE_CLIENT_ID:
       "1042228324880-0afqpdgvt0d5gevn209s4f0dpnabkd77.apps.googleusercontent.com",
     GOOGLE_CLIENT_SECRET: "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",

@@ -9,9 +9,14 @@ import Billing from "./Billing";
 import { Session } from "next-auth";
 
 export interface UserSession {
-  session: Session | null;
+  session:
+    | (Session & {
+        user?: {
+          id?: string | null;
+        };
+      })
+    | null;
 }
-
 const Me = ({ session }: UserSession) => {
   const page = [
     {

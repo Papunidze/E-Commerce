@@ -29,11 +29,10 @@ const Password = ({ session }: UserSession) => {
       <Form
         onSubmit={handleSubmit((form) =>
           $updatePassword.mutate(
-            { ...form, userId: session?.user?.id },
+            { ...form, userId: session?.user?.id || "" },
             {
               onSuccess: () => {
                 toast.success("Your password has been successfully reset");
-
                 reset();
               },
               onError: (error) => {

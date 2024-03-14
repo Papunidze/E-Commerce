@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^3.3.4",
     "bcrypt": "^5.1.1",
     "feather-icons": "^4.29.1",
+    "firebase-admin": "^12.0.0",
     "fp-ts": "^2.16.2",
     "io-ts": "^2.2.21",
     "mongoose": "^8.2.1",

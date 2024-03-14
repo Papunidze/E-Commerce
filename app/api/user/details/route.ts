@@ -1,5 +1,6 @@
 import User from "@/lib/models/user.models";
 import { connectToDatabase } from "@/lib/mongoose";
+import uploadImage from "@/lib/storeage";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -15,6 +16,7 @@ export const PUT = async (
   try {
     await connectToDatabase();
     const body = await req.json();
+
     if (!mongoose.Types.ObjectId.isValid(body.userId)) {
       return NextResponse.json(
         {
@@ -23,10 +25,11 @@ export const PUT = async (
         { status: 401 }
       );
     }
+    const avatar = await uploadImage(body.avatar);
 
     const updatedUser = await User.findByIdAndUpdate(
       body.userId,
-      { name: body.name, image: body.image },
+      { name: body.name, image: avatar },
       { new: true }
     );
 

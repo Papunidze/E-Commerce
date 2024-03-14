@@ -75,7 +75,7 @@ const MyDetails = ({ session }: UserSession) => {
       <Form
         onSubmit={handleSubmit((form) =>
           $updateUser.mutate(
-            { ...form, avatar, userId: session?.user?.id },
+            { ...form, avatar, userId: session?.user?.id || "" },
             {
               onSuccess: ({ ...args }) => {
                 toast.success(args.status);
