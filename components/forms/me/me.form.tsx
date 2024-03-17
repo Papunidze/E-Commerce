@@ -38,16 +38,18 @@ const Me = ({ session }: UserSession) => {
   return (
     <>
       <div className="relative inline-block">
-        <Image
-          src={session?.user?.image || ""}
-          alt="Avatar"
-          objectFit="cover"
-          loading="lazy"
-          width={40}
-          height={40}
-          className="rounded-full cursor-pointer"
-          onClick={() => setIsDialogOpen((prev) => !prev)}
-        />
+        <div className="w-10 h-10">
+          <Image
+            src={session?.user?.image || ""}
+            alt="Avatar"
+            objectFit="cover"
+            loading="lazy"
+            width={500}
+            height={500}
+            className="rounded-full cursor-pointer max-w-10 max-h-10 w-full h-full"
+            onClick={() => setIsDialogOpen((prev) => !prev)}
+          />
+        </div>
         <Dialog
           isOpen={isDialogOpen}
           title={"Settings"}

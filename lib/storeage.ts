@@ -1,12 +1,10 @@
 import admin from "firebase-admin";
 
-// Import serviceAccountKey file
 import serviceAccount from "@/pchat-2442c-firebase-adminsdk-rfbd2-e39586eda9.json";
 
-// Check if Firebase app has been initialized before initializing
 if (admin.apps.length === 0) {
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(serviceAccount as any),
     storageBucket: process.env.FIREBASE_BUCKET,
   });
 }
@@ -19,7 +17,7 @@ export default async function uploadImage(img: string) {
   let avatar;
   if (isPictureValid) {
     const mimeType = isPictureValid[0];
-    const base64Image = img.split(";base64,").pop();
+    const base64Image = img.split(";base64,").pop() as string;
     const buffer = Buffer.from(base64Image, "base64");
     const fileName = `${Date.now()}.${mimeType}`;
 

@@ -7,7 +7,7 @@ import BottomBar from "@/components/shared/appBottomBar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Provider from "@/utils/Provider";
-import Loading from "@/utils/loading";
+import SessionProvider from "@/utils/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
         <body
           className={`${inter.className} container h-screen max-h-[-webkit-fill-available] overflow-auto m-auto`}
         >
-          <Loading>
+          <SessionProvider>
             <main className="w-full">
               <TopBar />
               <section className="apply flex  flex-1 flex-col items-center bg-dark-1 px-6 pb-8 pt-2 max-md:pb-32 sm:px-10">
@@ -49,7 +49,7 @@ export default function RootLayout({
               <BottomBar />
             </main>
             <Authorization />
-          </Loading>
+          </SessionProvider>
         </body>
       </Provider>
     </html>

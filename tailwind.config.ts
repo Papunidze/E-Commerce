@@ -74,6 +74,7 @@ module.exports = {
       lg: "0px 0px 10px rgba(0, 0, 0, 0.2)",
       xl: "0px 0px 20px rgba(0, 0, 0, 0.25)",
       "2xl": "0px 0px 25px rgba(0, 0, 0, 0.3)",
+      "3xl": "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
       inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
       outline: "0 0 0 3px rgba(66, 153, 225, 0.5)",
       none: "none",
