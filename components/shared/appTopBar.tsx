@@ -14,9 +14,9 @@ const TopBar = () => {
   const [hoveredSpan, setHoveredSpan] = useState<String | null>(null);
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/CreateUser", label: "Trendy" },
-    { href: "/ClientMember", label: "Dresses" },
-    { href: "/Member", label: "Accessories" },
+    { href: "/trendy", label: "Trendy" },
+    { href: "/dresses", label: "Dresses" },
+    { href: "/accessories", label: "Accessories" },
   ];
 
   const isActive = (href: string) => pathname === href;
